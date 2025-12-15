@@ -12,14 +12,22 @@
     />
   </head>
   <body>
-    <div class="announcement-banner">
-📢 Activity registration is open until the end of the month. Don't miss your spot!
+    <div id="announcement-banner" class="announcement-banner hidden">
+      <div id="announcement-scroller" class="announcement-scroller"></div>
     </div>
     <header>
       <h1>Mergington High School</h1>
       <h2>Extracurricular Activities</h2>
       <div id="user-controls">
         <div id="user-status">
+          <button
+            id="manage-announcements-btn"
+            class="icon-button hidden"
+            aria-label="Manage announcements"
+          >
+            <span class="user-icon">🗒️</span>
+            <span>Announcements</span>
+          </button>
           <button id="login-button" class="icon-button">
             <span class="user-icon">👤</span>
             <span>Login</span>
@@ -134,6 +142,61 @@
           <button type="submit">Login</button>
         </form>
         <div id="login-message" class="hidden message"></div>
+      </div>
+    </div>
+
+    <!-- Announcement Management Modal -->
+    <div id="announcement-modal" class="modal hidden">
+      <div class="modal-content announcement-modal">
+        <span class="close-announcement-modal">&times;</span>
+        <div class="announcement-modal__header">
+          <div>
+            <p class="eyebrow">Communications</p>
+            <h3>Manage Announcements</h3>
+            <p class="muted">Create, edit, or expire announcements shown to students.</p>
+          </div>
+          <button id="new-announcement-button" class="pill-button">+ New</button>
+        </div>
+
+        <div id="announcement-admin-message" class="hidden message"></div>
+
+        <div class="announcement-modal__layout">
+          <div class="announcement-list-panel">
+            <h4>All announcements</h4>
+            <div id="announcement-list" class="announcement-list"></div>
+          </div>
+
+          <div class="announcement-form-panel">
+            <div class="panel-header">
+              <h4 id="announcement-form-title">Create announcement</h4>
+              <span class="pill status-chip" id="announcement-status-chip"></span>
+            </div>
+            <form id="announcement-form" class="announcement-form">
+              <label>
+                Title
+                <input type="text" id="announcement-title" name="title" required maxlength="120" placeholder="What should students know?" />
+              </label>
+              <label>
+                Message
+                <textarea id="announcement-message" name="message" rows="4" required maxlength="800" placeholder="Share details, deadlines, or helpful links."></textarea>
+              </label>
+              <div class="form-row">
+                <label>
+                  Start date (optional)
+                  <input type="date" id="announcement-start-date" name="start_date" />
+                </label>
+                <label>
+                  Expiration date
+                  <input type="date" id="announcement-end-date" name="end_date" required />
+                </label>
+              </div>
+              <div class="form-actions">
+                <button type="submit" id="save-announcement-button" class="primary">Save</button>
+                <button type="button" id="cancel-announcement-edit" class="ghost">Cancel</button>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
 
